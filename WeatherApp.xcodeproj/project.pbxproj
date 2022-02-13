@@ -31,6 +31,8 @@
 		A36C212327B99C0200974B28 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212227B99C0200974B28 /* ForecastTableViewCell.swift */; };
 		A36C212527B99C1500974B28 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212427B99C1500974B28 /* ForecastViewController.swift */; };
 		A36C212727B99C4A00974B28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212627B99C4A00974B28 /* SettingsViewController.swift */; };
+		A36C212927B99DFC00974B28 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212827B99DFC00974B28 /* LocationModel.swift */; };
+		A36C212B27B99E2300974B28 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212A27B99E2300974B28 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		A36C212227B99C0200974B28 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		A36C212427B99C1500974B28 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		A36C212627B99C4A00974B28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A36C212827B99DFC00974B28 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		A36C212A27B99E2300974B28 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,8 @@
 		A36C20FA27B996F800974B28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A36C212827B99DFC00974B28 /* LocationModel.swift */,
+				A36C212A27B99E2300974B28 /* APIManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,9 +366,11 @@
 				A36C20DC27B995F700974B28 /* AppDelegate.swift in Sources */,
 				A36C211127B9998C00974B28 /* TodayLabel.swift in Sources */,
 				A36C210F27B9996100974B28 /* DateLabel.swift in Sources */,
+				A36C212927B99DFC00974B28 /* LocationModel.swift in Sources */,
 				A36C211F27B99B6400974B28 /* MyCollectionViewCell.swift in Sources */,
 				A36C20DE27B995F700974B28 /* SceneDelegate.swift in Sources */,
 				A36C212527B99C1500974B28 /* ForecastViewController.swift in Sources */,
+				A36C212B27B99E2300974B28 /* APIManager.swift in Sources */,
 				A36C210D27B9994500974B28 /* Collection.swift in Sources */,
 				A36C211D27B99AC800974B28 /* LocationViewController.swift in Sources */,
 			);
