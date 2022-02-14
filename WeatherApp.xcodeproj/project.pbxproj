@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A33A355627BAAF5D007B9E3A /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A355527BAAF5D007B9E3A /* ErrorManager.swift */; };
 		A36C20DC27B995F700974B28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DB27B995F700974B28 /* AppDelegate.swift */; };
 		A36C20DE27B995F700974B28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DD27B995F700974B28 /* SceneDelegate.swift */; };
 		A36C20E027B995F700974B28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DF27B995F700974B28 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A33A355527BAAF5D007B9E3A /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		A36C20D827B995F700974B28 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36C20DB27B995F700974B28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A36C20DD27B995F700974B28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		A36C210227B9977600974B28 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				A33A355527BAAF5D007B9E3A /* ErrorManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				A36C210F27B9996100974B28 /* DateLabel.swift in Sources */,
 				A36C212927B99DFC00974B28 /* LocationModel.swift in Sources */,
 				A36C211F27B99B6400974B28 /* MyCollectionViewCell.swift in Sources */,
+				A33A355627BAAF5D007B9E3A /* ErrorManager.swift in Sources */,
 				A36C20DE27B995F700974B28 /* SceneDelegate.swift in Sources */,
 				A36C212527B99C1500974B28 /* ForecastViewController.swift in Sources */,
 				A36C212B27B99E2300974B28 /* APIManager.swift in Sources */,
