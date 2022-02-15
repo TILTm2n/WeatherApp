@@ -20,6 +20,8 @@ struct DateLabel {
     }
     
     func setDate(_ date: String) {
-        label.text = date
+        DispatchQueue.main.async {
+            self.label.text = date
+        }
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class LocationViewController: UIViewController {
     
     let icon            = Icon(iconName: "rain")
-    let dateLabel       = DateLabel(text: "Jan 30,2022")
+    let dateLabel       = DateLabel(text: "date")
     let todayLabel      = Today().label
     let temperature     = Temperature(temp: 28)
     var collectionView  = CustomCollection().collectionView
@@ -27,6 +27,7 @@ class LocationViewController: UIViewController {
     
     lazy var weatherManager = APIWeatherManager(apiKey: "5c3cbd6a194ea55903526944cac7ebe1")
     let coordanates = Coordinates(latitude: 44.676281998542265, longtitude: 34.40885457364702)
+    var hourlyForecastArray: [HourForecast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,25 +48,28 @@ class LocationViewController: UIViewController {
         setConstraints()
         
         icon.setImage(image: "cloudy")
-        dateLabel.setDate("Feb 13, 2022")
-        
+
         weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
             switch result {
             case .Success(let currentWeather):
-                self.location.changeLocation(location: currentWeather.location)
-                self.location.changeLocation(location: currentWeather.location)
-                self.temperature.setTemperature(temperature: Int(currentWeather.current.temperature))
-                self.customStackView.changeValues(temp: Int(currentWeather.current.feeling), humidity: Int(currentWeather.current.humidity), speed: Int(currentWeather.current.wind))
+                self.updateUIWith(currentWeather)
             case.Failure(let error as NSError):
                 print(error.self)
             }
         }
     }
     
-    
-    
-    func updateUIWith(locationModel: LocationModel) {
+    func updateUIWith(_ currentWeather: LocationModel) {
+        self.location.changeLocation(location: currentWeather.location)
+        self.location.changeLocation(location: currentWeather.location)
+        self.temperature.setTemperature(temperature: Int(currentWeather.current.temperature))
+        self.customStackView.changeValues(temp: Int(currentWeather.current.feeling), humidity: Int(currentWeather.current.humidity), speed: Int(currentWeather.current.wind))
+        self.dateLabel.setDate(currentWeather.current.getStringDate())
         
+        for hour in currentWeather.hours {
+            hourlyForecastArray.append(hour)
+            self.collectionView.reloadData()
+        }
     }
     
     func setConstraints(){
@@ -138,7 +142,7 @@ extension LocationViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return hourlyForecastArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
