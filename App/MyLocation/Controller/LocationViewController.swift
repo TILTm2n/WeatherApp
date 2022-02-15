@@ -48,17 +48,14 @@ class LocationViewController: UIViewController {
         
         icon.setImage(image: "cloudy")
         dateLabel.setDate("Feb 13, 2022")
-        temperature.setTemperature(temperature: 35)
-        location.changeLocation(location: "Simpheropol")
-        customStackView.changeValues(temp: 12, humidity: 34, speed: 56)
         
         weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
             switch result {
             case .Success(let currentWeather):
                 self.location.changeLocation(location: currentWeather.location)
-                print(currentWeather.location)
                 self.location.changeLocation(location: currentWeather.location)
                 self.temperature.setTemperature(temperature: Int(currentWeather.current.temperature))
+                self.customStackView.changeValues(temp: Int(currentWeather.current.feeling), humidity: Int(currentWeather.current.humidity), speed: Int(currentWeather.current.wind))
             case.Failure(let error as NSError):
                 print(error.self)
             }

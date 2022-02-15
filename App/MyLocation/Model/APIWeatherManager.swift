@@ -16,19 +16,19 @@ enum ForecastType: FinalURLPoint {
     case Current(apiKey: String, coordinates: Coordinates)
     
     var baseURL: URL {
-        return URL(string: "https://api.openweathermap.org/data/2.5/onecall?")!
+        return URL(string: "https://api.openweathermap.org/data/2.5/")!
     }
     
     var path: String {
         switch self {
         case let .Current(apiKey, coordinates):
-            return "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longtitude)&exclude=minutely,daily,alerts&appid=\(apiKey)"
+            return "onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longtitude)&exclude=minutely,daily,alerts&appid=\(apiKey)"
         }
     }
     
     
     var request: URLRequest {
-        let url = URL(string: path)
+        let url = URL(string: path, relativeTo: baseURL)
         return URLRequest(url: url!)
     }
     
@@ -54,7 +54,6 @@ final class APIWeatherManager: APIManager {
     
     func fetchCurrentWeatherWith(coordinates: Coordinates, completionHandler: @escaping ((APIResult<LocationModel>) -> Void)) {
         let request = ForecastType.Current(apiKey: apiKey, coordinates: coordinates).request
-        
         
         fetch(request: request, completionHandler: completionHandler)
     }

@@ -36,9 +36,12 @@ class CustomStackView {
     }
     
     func changeValues(temp: Int, humidity: Int, speed: Int) {
-        tempLabel?.text = "\(temp)C"
-        humidityLabel?.text = "\(humidity)%"
-        windLabel?.text = "\(speed)km/h"
+        DispatchQueue.main.async {
+            self.tempLabel?.text = "\(temp - 273)C"
+            self.humidityLabel?.text = "\(humidity)%"
+            self.windLabel?.text = "\(speed)km/h"
+        }
+        
     }
     
     func createBlock(index: Int, value: Double) -> UIStackView {
