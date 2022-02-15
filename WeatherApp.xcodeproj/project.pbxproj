@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A33A355627BAAF5D007B9E3A /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A355527BAAF5D007B9E3A /* ErrorManager.swift */; };
+		A33A355827BAB9FF007B9E3A /* APIWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */; };
 		A36C20DC27B995F700974B28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DB27B995F700974B28 /* AppDelegate.swift */; };
 		A36C20DE27B995F700974B28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DD27B995F700974B28 /* SceneDelegate.swift */; };
 		A36C20E027B995F700974B28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DF27B995F700974B28 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		A33A355527BAAF5D007B9E3A /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWeatherManager.swift; sourceTree = "<group>"; };
 		A36C20D827B995F700974B28 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36C20DB27B995F700974B28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A36C20DD27B995F700974B28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				A36C212827B99DFC00974B28 /* LocationModel.swift */,
 				A36C212A27B99E2300974B28 /* APIManager.swift */,
+				A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				A36C20E627B995F700974B28 /* WeatherApp.xcdatamodeld in Sources */,
 				A36C212727B99C4A00974B28 /* SettingsViewController.swift in Sources */,
 				A36C211B27B99A4700974B28 /* LocationCollectionViewCell.swift in Sources */,
+				A33A355827BAB9FF007B9E3A /* APIWeatherManager.swift in Sources */,
 				A36C211727B999FD00974B28 /* TemperatureLabel.swift in Sources */,
 				A36C212327B99C0200974B28 /* ForecastTableViewCell.swift in Sources */,
 				A36C211527B999D400974B28 /* CustomScrollView.swift in Sources */,

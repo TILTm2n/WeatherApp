@@ -25,6 +25,9 @@ class LocationViewController: UIViewController {
         return refreshControl
     }()
     
+    lazy var weatherManager = APIWeatherManager(apiKey: "5c3cbd6a194ea55903526944cac7ebe1")
+    let coordanates = Coordinates(latitude: 44.676281998542265, longtitude: 34.40885457364702)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         extendedLayoutIncludesOpaqueBars = true
@@ -41,13 +44,31 @@ class LocationViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        setConstraints()
+        
         icon.setImage(image: "cloudy")
         dateLabel.setDate("Feb 13, 2022")
         temperature.setTemperature(temperature: 35)
-        location.changeLocation(location: "Simpheropol Crimea")
+        location.changeLocation(location: "Simpheropol")
         customStackView.changeValues(temp: 12, humidity: 34, speed: 56)
         
-        setConstraints()
+        weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
+            switch result {
+            case .Success(let currentWeather):
+                self.location.changeLocation(location: currentWeather.location)
+                print(currentWeather.location)
+                self.location.changeLocation(location: currentWeather.location)
+                self.temperature.setTemperature(temperature: Int(currentWeather.current.temperature))
+            case.Failure(let error as NSError):
+                print(error.self)
+            }
+        }
+    }
+    
+    
+    
+    func updateUIWith(locationModel: LocationModel) {
+        
     }
     
     func setConstraints(){

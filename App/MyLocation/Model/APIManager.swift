@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol FinalURLPoint {
+    var baseURL: URL { get }
+    var path: String { get }
+    var request: URLRequest { get }
+}
+
 enum APIResult<LocationModel> {
     case Success(LocationModel)
     case Failure(Error)
@@ -61,7 +67,7 @@ extension APIManager {
                         completionHandler(nil, HTTPResponse, error)
                     }
                 default:
-                    print("We have got response status \(HTTPResponse.statusCode)")
+                    print("We have got response status \(HTTPResponse.statusCode) pososi")
                 }
             }
         }

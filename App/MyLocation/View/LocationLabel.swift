@@ -24,6 +24,8 @@ class LocationLabel{
     }
     
     func changeLocation(location: String){
-        locationLabel.text = location
+        DispatchQueue.main.async {
+            self.locationLabel.text = location
+        }
     }
 }

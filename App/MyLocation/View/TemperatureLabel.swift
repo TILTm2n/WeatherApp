@@ -19,6 +19,8 @@ struct Temperature {
     }
     
     func setTemperature(temperature: Int) {
-        label.text = "\(Int(temperature))C"
+        DispatchQueue.main.async {
+            self.label.text = "\(temperature - 273)C"
+        }
     }
 }
