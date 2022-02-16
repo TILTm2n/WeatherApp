@@ -48,11 +48,22 @@ class LocationViewController: UIViewController {
         setConstraints()
         
         icon.setImage(image: "cloudy")
-
+        
+        getCurrentWeatherData()
+    }
+    
+    func reloadAllData() {
+        
+    }
+    
+    func getCurrentWeatherData() {
         weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
             switch result {
             case .Success(let currentWeather):
                 self.updateUIWith(currentWeather)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             case.Failure(let error as NSError):
                 print(error.self)
             }
@@ -66,9 +77,8 @@ class LocationViewController: UIViewController {
         self.customStackView.changeValues(temp: Int(currentWeather.current.feeling), humidity: Int(currentWeather.current.humidity), speed: Int(currentWeather.current.wind))
         self.dateLabel.setDate(currentWeather.current.getStringDate())
         
-        for hour in currentWeather.hours {
-            hourlyForecastArray.append(hour)
-            self.collectionView.reloadData()
+        for i in 0...6 {
+            hourlyForecastArray.append(currentWeather.hours[i])
         }
     }
     
@@ -146,8 +156,9 @@ extension LocationViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCollectionViewCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCollectionViewCell.identifier, for: indexPath) as! LocationCollectionViewCell
         
+        cell.setTemperature(temp: hourlyForecastArray[indexPath.row].temperature)
         return cell
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class LocationCollectionViewCell: UICollectionViewCell {
     static let identifier = "LocationCollectionCell"
     
-    let temperature: UILabel = {
+    var temperature: UILabel = {
         var temperature = UILabel()
         temperature.translatesAutoresizingMaskIntoConstraints = false
         temperature.text = "28C"
@@ -59,6 +59,10 @@ class LocationCollectionViewCell: UICollectionViewCell {
         iconConstraints()
         temperatureConstraints()
         timeConstraints()
+    }
+
+    func setTemperature(temp: Double) {
+        self.temperature.text = String(Int(temp - 273))
     }
     
     fileprivate func iconConstraints() {
