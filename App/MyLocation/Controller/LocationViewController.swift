@@ -76,6 +76,7 @@ class LocationViewController: UIViewController {
         self.temperature.setTemperature(temperature: Int(currentWeather.current.temperature))
         self.customStackView.changeValues(temp: Int(currentWeather.current.feeling), humidity: Int(currentWeather.current.humidity), speed: Int(currentWeather.current.wind))
         self.dateLabel.setDate(currentWeather.current.getStringDate())
+        self.icon.setImage(image: WeatherIconManager(rawValue: currentWeather.current.weather[0].icon).rawValue)
         
         for i in 0...6 {
             hourlyForecastArray.append(currentWeather.hours[i])
@@ -159,6 +160,8 @@ extension LocationViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCollectionViewCell.identifier, for: indexPath) as! LocationCollectionViewCell
         
         cell.setTemperature(temp: hourlyForecastArray[indexPath.row].temperature)
+        cell.setIcon(icon: hourlyForecastArray[indexPath.row].weather[0].icon)
+        
         return cell
     }
     

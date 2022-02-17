@@ -18,6 +18,9 @@ struct Icon {
     }
     
     func setImage(image withName: String) {
-        iconImage.image = UIImage(named: withName)
+        DispatchQueue.main.async {
+            iconImage.image = UIImage(named: withName)
+        }
+        
     }
 }

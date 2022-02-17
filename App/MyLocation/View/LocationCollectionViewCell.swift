@@ -65,13 +65,17 @@ class LocationCollectionViewCell: UICollectionViewCell {
         self.temperature.text = String(Int(temp - 273))
     }
     
+    func setIcon(icon: String) {
+        self.icon.image = UIImage(named: icon)
+    }
+    
     fileprivate func iconConstraints() {
+        icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         icon.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        icon.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         icon.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
         icon.widthAnchor.constraint(equalToConstant: 70.0).isActive = true
         
-        //icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        //icon.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
     }
     
     fileprivate func temperatureConstraints() {

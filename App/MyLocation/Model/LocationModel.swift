@@ -59,9 +59,11 @@ struct Weather: Codable {
 
 struct HourForecast: Codable {
     var temperature: Double
+    var weather: [Weather]
     
     enum CodingKeys: String, CodingKey {
         case temperature = "temp"
+        case weather
     }
 }
 
