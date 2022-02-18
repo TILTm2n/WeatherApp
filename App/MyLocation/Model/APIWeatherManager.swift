@@ -8,8 +8,31 @@
 import Foundation
 
 struct Coordinates {
-    let latitude: Double
-    let longtitude: Double
+    private var latitude: Double
+    private var longitude: Double
+    
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    var Latitude: Double {
+        get {
+            return latitude
+        }
+        set(newLatitude) {
+            latitude = newLatitude
+        }
+    }
+    
+    var Longitude: Double {
+        get {
+            return latitude
+        }
+        set(newLongitude) {
+            longitude = newLongitude
+        }
+    }
 }
 
 enum ForecastType: FinalURLPoint {
@@ -22,7 +45,7 @@ enum ForecastType: FinalURLPoint {
     var path: String {
         switch self {
         case let .Current(apiKey, coordinates):
-            return "onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longtitude)&exclude=minutely,daily,alerts&appid=\(apiKey)"
+            return "onecall?lat=\(coordinates.Latitude)&lon=\(coordinates.Longitude)&exclude=minutely,daily,alerts&appid=\(apiKey)"
         }
     }
     

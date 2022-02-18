@@ -14,12 +14,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     let icon            = Icon(iconName: "rain")
     let dateLabel       = DateLabel(text: "date")
     let todayLabel      = Today().label
-    let temperature     = Temperature(temp: 28)
+    let temperature     = Temperature(temp: 0)
     var collectionView  = CustomCollection().collectionView
     let customStackView = CustomStackView()
     lazy var scrollView = CustomScrollView(frame: self.view.frame).scrollView
     lazy var location   = LocationLabel()
-    
     let locationManager = CLLocationManager()
     
     lazy var refreshControl : UIRefreshControl = {
@@ -29,7 +28,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     }()
     
     lazy var weatherManager = APIWeatherManager(apiKey: "5c3cbd6a194ea55903526944cac7ebe1")
-    let coordanates = Coordinates(latitude: 44.676281998542265, longtitude: 34.40885457364702)
+    var coordanates = Coordinates(latitude: 44.676281998542265, longitude: 34.40885457364702)
     var hourlyForecastArray: [HourForecast] = []
     
     override func viewDidLoad() {
@@ -47,37 +46,43 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         scrollView.refreshControl = refreshControl
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         refreshControl.addTarget(self, action: #selector(reloadAllDataByRefresh), for: .primaryActionTriggered)
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
         setConstraints()
         getCurrentWeatherData()
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation = locations.last! as CLLocation
+        coordanates.Latitude = userLocation.coordinate.latitude
+        coordanates.Longitude = userLocation.coordinate.longitude
+        
+    }
+    
     func toggleActivityIndicator(on: Bool) {
         DispatchQueue.main.async {
             self.refreshControl.isHidden = on
-            print("pr1")
             if on {
                 self.refreshControl.beginRefreshing()
-                print("pr2")
             } else {
                 self.refreshControl.endRefreshing()
-                print("pr3")
             }
         }
-
+        
     }
     
     @objc func reloadAllDataByRefresh() {
-        print("reload and start refresh")
         toggleActivityIndicator(on: true)
         getCurrentWeatherData()
     }
     
     func getCurrentWeatherData() {
         weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
-            print("end refresh")
             self.toggleActivityIndicator(on: false)
             switch result {
             case .Success(let currentWeather):
@@ -167,8 +172,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             collectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             collectionView.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 15)
         ])
-        
-        
     }
 }
 
