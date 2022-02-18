@@ -14,7 +14,7 @@ struct Today {
     init(){
         label.text = "Today"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = UIColor(red: 1, green: 0.996, blue: 0.996, alpha: 1)
     }
 }

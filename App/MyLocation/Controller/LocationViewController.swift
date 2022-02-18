@@ -5,10 +5,11 @@
 //  Created by Eugene on 13.02.2022.
 //
 
+import CoreLocation
 import Foundation
 import UIKit
 
-class LocationViewController: UIViewController {
+class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     let icon            = Icon(iconName: "rain")
     let dateLabel       = DateLabel(text: "date")
@@ -19,7 +20,9 @@ class LocationViewController: UIViewController {
     lazy var scrollView = CustomScrollView(frame: self.view.frame).scrollView
     lazy var location   = LocationLabel()
     
-    lazy var ibgRefreshControl : UIRefreshControl = {
+    let locationManager = CLLocationManager()
+    
+    lazy var refreshControl : UIRefreshControl = {
         var refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.red
         return refreshControl
@@ -41,23 +44,41 @@ class LocationViewController: UIViewController {
         scrollView.addSubview(location.locationLabel)
         scrollView.addSubview(collectionView)
         scrollView.addSubview(customStackView.stackView)
-        scrollView.refreshControl = ibgRefreshControl
+        scrollView.refreshControl = refreshControl
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        refreshControl.addTarget(self, action: #selector(reloadAllDataByRefresh), for: .primaryActionTriggered)
+        
         setConstraints()
-        
-        icon.setImage(image: "cloudy")
-        
         getCurrentWeatherData()
     }
     
-    func reloadAllData() {
-        
+    func toggleActivityIndicator(on: Bool) {
+        DispatchQueue.main.async {
+            self.refreshControl.isHidden = on
+            print("pr1")
+            if on {
+                self.refreshControl.beginRefreshing()
+                print("pr2")
+            } else {
+                self.refreshControl.endRefreshing()
+                print("pr3")
+            }
+        }
+
+    }
+    
+    @objc func reloadAllDataByRefresh() {
+        print("reload and start refresh")
+        toggleActivityIndicator(on: true)
+        getCurrentWeatherData()
     }
     
     func getCurrentWeatherData() {
         weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
+            print("end refresh")
+            self.toggleActivityIndicator(on: false)
             switch result {
             case .Success(let currentWeather):
                 self.updateUIWith(currentWeather)
@@ -65,7 +86,11 @@ class LocationViewController: UIViewController {
                     self.collectionView.reloadData()
                 }
             case.Failure(let error as NSError):
-                print(error.self)
+                let alertController = UIAlertController(title: "Unable to get data", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(ok)
+                self.present(alertController, animated: true, completion: nil)
+            default: break
             }
         }
     }
@@ -140,7 +165,7 @@ class LocationViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.heightAnchor.constraint(equalToConstant: 85),
             collectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            collectionView.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 24)
+            collectionView.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 15)
         ])
         
         

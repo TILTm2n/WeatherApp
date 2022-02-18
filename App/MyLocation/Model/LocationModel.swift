@@ -75,9 +75,6 @@ struct HourForecast: Codable {
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "HH:mm"
         let strDate = dateFormatter.string(from: date)
-        
-//        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-        
         return strDate
     }
 }
