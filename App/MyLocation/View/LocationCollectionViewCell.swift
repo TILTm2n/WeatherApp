@@ -62,9 +62,9 @@ class LocationCollectionViewCell: UICollectionViewCell {
     }
 
     func setTemperature(temp: Double) {
-        self.temperature.text = String(Int(temp))
+        self.temperature.text = String(Double(round(1000 * (temp - 273)) / 1000))
     }
-    //Double(round(1000 * (temp - 273)) / 1000)
+    
     
     func setIcon(icon: String) {
         self.icon.image = UIImage(named: icon)
