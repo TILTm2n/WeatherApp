@@ -161,6 +161,7 @@ extension LocationViewController: UICollectionViewDelegate, UICollectionViewData
         
         cell.setTemperature(temp: hourlyForecastArray[indexPath.row].temperature)
         cell.setIcon(icon: hourlyForecastArray[indexPath.row].weather[0].icon)
+        cell.setTime(time: hourlyForecastArray[indexPath.row].getStringDate())
         
         return cell
     }

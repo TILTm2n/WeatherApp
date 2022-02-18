@@ -60,10 +60,25 @@ struct Weather: Codable {
 struct HourForecast: Codable {
     var temperature: Double
     var weather: [Weather]
+    var date: Double
     
     enum CodingKeys: String, CodingKey {
         case temperature = "temp"
         case weather
+        case date = "dt"
+    }
+    
+    func getStringDate() -> String{
+        let date = Date(timeIntervalSince1970: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: date)
+        
+//        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        
+        return strDate
     }
 }
 

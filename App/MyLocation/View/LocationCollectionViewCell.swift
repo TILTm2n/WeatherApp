@@ -23,7 +23,7 @@ class LocationCollectionViewCell: UICollectionViewCell {
     let time: UILabel = {
         var time = UILabel()
         time.translatesAutoresizingMaskIntoConstraints = false
-        time.text = "10:00am"
+        time.text = "00:00am"
         time.font = UIFont(name: "RobotoSlab-Medium", size: 12)
         time.textColor = .black
         return time
@@ -67,6 +67,10 @@ class LocationCollectionViewCell: UICollectionViewCell {
     
     func setIcon(icon: String) {
         self.icon.image = UIImage(named: icon)
+    }
+    
+    func setTime(time: String) {
+        self.time.text = time
     }
     
     fileprivate func iconConstraints() {
