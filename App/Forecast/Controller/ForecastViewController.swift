@@ -10,119 +10,57 @@ import UIKit
 
 class ForecastViewController: UIViewController {
 
-    let forecastLabel = UILabel()
-    let todayLabel = UILabel()
-    let dateLabel = UILabel()
-    var collectionView: UICollectionView?
-    var tableView = UITableView()
+    let header = Header().getHeader()
+    let collectionView = ForecastCollection().getCollectionView()
+    let tableView = ForecastTable().getTableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "mainBGLight")
-        view.addSubview(todayLabel)
-        view.addSubview(dateLabel)
+        view.addSubview(header)
+        view.addSubview(collectionView)
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
-        setForecastLabel()
-        setForecastLabelConstraints()
-        
-        setTodayLabel()
-        setTodayLabelConstrints()
-        
-        setDateLabel()
-        setDateLabelConstrints()
-        
-        setCollectionView()
+        setHeaderConstraints()
         setCollectionViewConstraints()
         
-        setTableView()
         setTableViewConstraints()
         
     }
     
-    func setForecastLabel(){
-        view.addSubview(forecastLabel)
-        forecastLabel.text = "Forecast Report"
-        //forecastLabel.font = UIFont(name: "RobotoSlab-Medium", size: 30)
-        forecastLabel.font = UIFont.boldSystemFont(ofSize: 30.0)
-        forecastLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        forecastLabel.layer.shadowOffset = CGSize(width: 5, height: 5)
-        forecastLabel.layer.shadowOpacity = 0.5
-        forecastLabel.textAlignment = .center
-        
+    //MARK: - Header Constraints
+    func setHeaderConstraints() {
+        NSLayoutConstraint.activate([
+            header.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45.0),
+            header.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 28),
+            header.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -28)
+        ])
     }
     
-    func setForecastLabelConstraints(){
-        forecastLabel.translatesAutoresizingMaskIntoConstraints = false
-        forecastLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45.0).isActive = true
-        forecastLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-    }
-    
-    func setTodayLabel(){
-        todayLabel.text = "Today"
-        todayLabel.textColor = .white
-        todayLabel.font = UIFont(name: "RobotoSlab-Light", size: 15)
-    }
-    
-    func setTodayLabelConstrints(){
-        todayLabel.translatesAutoresizingMaskIntoConstraints = false
-        todayLabel.topAnchor.constraint(equalTo: forecastLabel.bottomAnchor, constant: 30).isActive = true
-        todayLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 28.0).isActive = true
-        todayLabel.rightAnchor.constraint(equalTo: dateLabel.leftAnchor).isActive = true
-    }
-    
-    func setDateLabel(){
-        dateLabel.text = "Jan 30,2022"
-        dateLabel.textAlignment = .right
-        dateLabel.textColor = .white
-        dateLabel.font = UIFont(name: "RobotoSlab-Light", size: 15)
-    }
-    
-    func setDateLabelConstrints(){
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.topAnchor.constraint(equalTo: forecastLabel.bottomAnchor, constant: 30).isActive = true
-        dateLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -28.0).isActive = true
-        dateLabel.leftAnchor.constraint(equalTo: todayLabel.rightAnchor).isActive = true
-    }
-    
-    func setCollectionView(){
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        guard let collectionView = collectionView else {return}
-        view.addSubview(collectionView)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastCollectionViewCell.identifier)
-        collectionView.backgroundColor = UIColor(named: "mainBGLight")
-        collectionView.showsHorizontalScrollIndicator = false
-    }
-    
+    //MARK: - Collection Constraints
     func setCollectionViewConstraints(){
-        collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 10).isActive = true
-        collectionView?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0).isActive = true
-        collectionView?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        collectionView?.heightAnchor.constraint(equalToConstant: 85).isActive = true
+        NSLayoutConstraint.activate([
+            collectionView.heightAnchor.constraint(equalToConstant: 85),
+            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 10),
+            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0)
+        ])
     }
     
-    func setTableView(){
-        tableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.identifier)
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = UIColor(named: "mainBGLight")
-    }
-    
+    //MARK: - Table Constraints
     func setTableViewConstraints(){
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: collectionView!.bottomAnchor, constant: 23.0).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 30.0).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -30.0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 23.0),
+            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 30.0),
+            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -30.0)
+        ])
     }
-
 }
 
 // MARK: - Table View

@@ -35,8 +35,6 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.contentMode = .scaleAspectFill
         icon.image = UIImage(named: "cloudy")
-        
-        //icon.image = UIImage(named: "rain")
         return icon
     }()
     

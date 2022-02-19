@@ -13,29 +13,27 @@ class LocationCollectionViewCell: UICollectionViewCell {
     
     var temperature: UILabel = {
         var temperature = UILabel()
-        temperature.translatesAutoresizingMaskIntoConstraints = false
         temperature.text = "28C"
-        temperature.font = UIFont(name: "RobotoSlab-Medium", size: 17)
         temperature.textColor = .black
+        temperature.font = UIFont(name: "RobotoSlab-Medium", size: 17)
+        temperature.translatesAutoresizingMaskIntoConstraints = false
         return temperature
     }()
     
     let time: UILabel = {
         var time = UILabel()
-        time.translatesAutoresizingMaskIntoConstraints = false
         time.text = "00:00am"
-        time.font = UIFont(name: "RobotoSlab-Medium", size: 12)
         time.textColor = .black
+        time.translatesAutoresizingMaskIntoConstraints = false
+        time.font = UIFont(name: "RobotoSlab-Medium", size: 12)
         return time
     }()
     
     let icon: UIImageView = {
         var icon = UIImageView()
-        icon.translatesAutoresizingMaskIntoConstraints = false
         icon.contentMode = .scaleAspectFill
         icon.image = UIImage(named: "cloudy")
-        
-        //icon.image = UIImage(named: "rain")
+        icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
     }()
     
@@ -43,7 +41,6 @@ class LocationCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 20
-        
         contentView.addSubview(temperature)
         contentView.addSubview(time)
         contentView.addSubview(icon)
@@ -55,7 +52,6 @@ class LocationCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         iconConstraints()
         temperatureConstraints()
         timeConstraints()
@@ -74,23 +70,24 @@ class LocationCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func iconConstraints() {
-        icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        icon.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        icon.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-        icon.widthAnchor.constraint(equalToConstant: 70.0).isActive = true
-        
-        //icon.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            icon.widthAnchor.constraint(equalToConstant: 70.0),
+            icon.heightAnchor.constraint(equalToConstant: 70.0),
+            icon.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
     }
     
     fileprivate func temperatureConstraints() {
         temperature.topAnchor.constraint(equalTo: time.bottomAnchor, constant: 5.0).isActive = true
         temperature.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 13.0).isActive = true
-        
     }
     
     fileprivate func timeConstraints() {
-        time.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27.0).isActive = true
-        time.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 13.0).isActive = true
-        time.heightAnchor.constraint(equalToConstant: 16.0).isActive = true
+        NSLayoutConstraint.activate([
+            time.heightAnchor.constraint(equalToConstant: 16.0),
+            time.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 13.0),
+            time.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27.0)
+        ])
     }
 }

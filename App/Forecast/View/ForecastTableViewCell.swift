@@ -37,8 +37,8 @@ class ForecastTableViewCell: UITableViewCell {
     
     let temperature: UILabel = {
         var temperature = UILabel()
-        temperature.translatesAutoresizingMaskIntoConstraints = false
         temperature.text = "28C"
+        temperature.translatesAutoresizingMaskIntoConstraints = false
         temperature.font = UIFont(name: "RobotoSlab-Medium", size: 36)
         temperature.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         return temperature

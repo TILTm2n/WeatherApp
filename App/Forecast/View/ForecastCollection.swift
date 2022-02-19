@@ -1,14 +1,14 @@
 //
-//  Collection.swift
+//  ForecastCollection.swift
 //  WeatherApp
 //
-//  Created by Eugene on 13.02.2022.
+//  Created by Eugene on 19.02.2022.
 //
 
-import Foundation
 import UIKit
+import Foundation
 
-struct CustomCollection {
+struct ForecastCollection {
     let layout: UICollectionViewFlowLayout
     var collectionView: UICollectionView
     
@@ -19,6 +19,11 @@ struct CustomCollection {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor(named: "mainBGLight")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(LocationCollectionViewCell.self, forCellWithReuseIdentifier: LocationCollectionViewCell.identifier)
+        collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastCollectionViewCell.identifier)
+    }
+    
+    func getCollectionView() -> UICollectionView {
+        return collectionView
     }
 }
+
