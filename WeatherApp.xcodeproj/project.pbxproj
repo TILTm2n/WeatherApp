@@ -38,6 +38,7 @@
 		A36C212B27B99E2300974B28 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212A27B99E2300974B28 /* APIManager.swift */; };
 		A399056427C0D13D007F62CB /* DescriptionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056327C0D13D007F62CB /* DescriptionHeader.swift */; };
 		A399056627C0DFB4007F62CB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056527C0DFB4007F62CB /* Search.swift */; };
+		A399056827C11F44007F62CB /* SearchCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056727C11F44007F62CB /* SearchCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		A36C212A27B99E2300974B28 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		A399056327C0D13D007F62CB /* DescriptionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionHeader.swift; sourceTree = "<group>"; };
 		A399056527C0DFB4007F62CB /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		A399056727C11F44007F62CB /* SearchCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,9 +225,10 @@
 		A36C20FC27B9972500974B28 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A399056527C0DFB4007F62CB /* Search.swift */,
+				A399056727C11F44007F62CB /* SearchCollection.swift */,
 				A399056327C0D13D007F62CB /* DescriptionHeader.swift */,
 				A36C211E27B99B6400974B28 /* MyCollectionViewCell.swift */,
-				A399056527C0DFB4007F62CB /* Search.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				A36C211727B999FD00974B28 /* TemperatureLabel.swift in Sources */,
 				A36C212327B99C0200974B28 /* ForecastTableViewCell.swift in Sources */,
 				A36C211527B999D400974B28 /* CustomScrollView.swift in Sources */,
+				A399056827C11F44007F62CB /* SearchCollection.swift in Sources */,
 				A36C211927B99A2A00974B28 /* CustomStackView.swift in Sources */,
 				A36C20E027B995F700974B28 /* ViewController.swift in Sources */,
 				A36C212127B99B7800974B28 /* SearchViewController.swift in Sources */,

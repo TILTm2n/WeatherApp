@@ -10,42 +10,24 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    var collection = SearchCollection().collectionView
+    let searchPanel = Search().searchContainer
     let header = DescriptionHeader().headerStackView
     
-    let searchPanel = UIView()
-    let searchBar = UISearchBar()
-    let searchTextField = UISearchTextField()
-    let searchBarContainer = UIView()
-    let locationButton = UIButton()
-    var collectionView: UICollectionView?
+    //var collectionView: UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "mainBGLight")
         self.view.addSubview(header)
-        
         self.view.addSubview(searchPanel)
-        self.searchPanel.addSubview(searchBarContainer)
-        self.searchPanel.addSubview(locationButton)
-        self.searchBarContainer.addSubview(searchTextField)
+        self.view.addSubview(collection)
+        collection.delegate = self
+        collection.dataSource = self
         
         setHeaderConstraits()
-        
-        setSearch()
         setSearchConstraints()
-        
-        setLocationButton()
-        setLocationButtonConstraints()
-        
-        setSearchBarContainer()
-        setSearchBarContainerConstraints()
-        
-        setSearchBarTextField()
-        setSearchBarTextFieldConstraints()
-        
-        setCollectionView()
         setCollectionViewConstraints()
-        
     }
 
     // MARK: - Header
@@ -57,82 +39,24 @@ class SearchViewController: UIViewController {
         ])
     }
     
-    // MARK: - searchPanel
-    func setSearch(){
-        searchPanel.layer.cornerRadius = 20
-    }
-    
+    // MARK: - Search Panel
     func setSearchConstraints(){
         searchPanel.translatesAutoresizingMaskIntoConstraints = false
         searchPanel.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 21).isActive = true
-        
         searchPanel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 45).isActive = true
         searchPanel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -45).isActive = true
         searchPanel.heightAnchor.constraint(equalToConstant: 63.0).isActive = true
     }
     
-    func setLocationButton(){
-        locationButton.backgroundColor = UIColor(named: "tabBarColorLight")
-        locationButton.layer.cornerRadius = 20
-        locationButton.setImage(UIImage(named: "locationButton"), for: .normal)
-    }
-    
-    func setLocationButtonConstraints(){
-        locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.rightAnchor.constraint(equalTo: self.searchPanel.rightAnchor).isActive = true
-        locationButton.centerYAnchor.constraint(equalTo: self.searchPanel.centerYAnchor).isActive = true
-        locationButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        locationButton.heightAnchor.constraint(equalTo: self.searchPanel.heightAnchor).isActive = true
-    }
-    
-    func setSearchBarContainer(){
-        searchBarContainer.clipsToBounds = true
-        searchBarContainer.backgroundColor = UIColor(named: "tabBarColorLight")
-        searchBarContainer.layer.cornerRadius = 20
-    }
-    
-    func setSearchBarContainerConstraints(){
-        searchBarContainer.translatesAutoresizingMaskIntoConstraints = false
-        searchBarContainer.rightAnchor.constraint(equalTo: self.locationButton.leftAnchor, constant: -15).isActive = true
-        searchBarContainer.leftAnchor.constraint(equalTo: self.searchPanel.leftAnchor).isActive = true
-        searchBarContainer.topAnchor.constraint(equalTo: self.searchPanel.topAnchor).isActive = true
-        searchBarContainer.bottomAnchor.constraint(equalTo: self.searchPanel.bottomAnchor).isActive = true
-    }
-    
-    func setSearchBarTextField(){
-        searchTextField.placeholder = "Search"
-    }
-
-    func setSearchBarTextFieldConstraints(){
-        searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        searchTextField.leftAnchor.constraint(equalTo: searchBarContainer.leftAnchor).isActive = true
-        searchTextField.rightAnchor.constraint(equalTo: searchBarContainer.rightAnchor).isActive = true
-        searchTextField.topAnchor.constraint(equalTo: searchBarContainer.topAnchor).isActive = true
-        searchTextField.bottomAnchor.constraint(equalTo: searchBarContainer.bottomAnchor).isActive = true
-    }
-    
-    func setCollectionView(){
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        guard let collectionView = collectionView else {return}
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        //Регистрирует класс для использования при создании новых ячеек представления коллекции.
-        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
-        collectionView.backgroundColor = UIColor(named: "mainBGLight")
-        collectionView.showsVerticalScrollIndicator = false
-    }
-    
+    // MARK: - Search Collection
     func setCollectionViewConstraints(){
-        collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.topAnchor.constraint(equalTo: self.searchPanel.bottomAnchor, constant: 31.0).isActive = true
-        collectionView?.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 45.0).isActive = true
-        collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -45.0).isActive = true
-        collectionView?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0.0).isActive = true
+        NSLayoutConstraint.activate([
+            collection.topAnchor.constraint(equalTo: searchPanel.bottomAnchor, constant: 31.0),
+            collection.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 45.0),
+            collection.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -45.0),
+            collection.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0.0)
+        ])
     }
-    
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -168,6 +92,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 39
+        return 10
     }
 }

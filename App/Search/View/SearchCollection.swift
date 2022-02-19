@@ -2,24 +2,23 @@
 //  Collection.swift
 //  WeatherApp
 //
-//  Created by Eugene on 13.02.2022.
+//  Created by Eugene on 19.02.2022.
 //
 
-import Foundation
 import UIKit
+import Foundation
 
-struct CustomCollection {
+struct SearchCollection {
     let layout: UICollectionViewFlowLayout
     var collectionView: UICollectionView
     
     init(){
         layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        
+        layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor(named: "mainBGLight")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(LocationCollectionViewCell.self, forCellWithReuseIdentifier: LocationCollectionViewCell.identifier)
+        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
     }
 }
