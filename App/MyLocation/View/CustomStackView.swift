@@ -31,10 +31,6 @@ class CustomStackView {
         }
     }
     
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func changeValues(temp: Int, humidity: Int, speed: Int) {
         DispatchQueue.main.async {
             self.tempLabel?.text = "\(temp - 273)C"

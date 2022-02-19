@@ -36,6 +36,8 @@
 		A36C212727B99C4A00974B28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212627B99C4A00974B28 /* SettingsViewController.swift */; };
 		A36C212927B99DFC00974B28 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212827B99DFC00974B28 /* LocationModel.swift */; };
 		A36C212B27B99E2300974B28 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C212A27B99E2300974B28 /* APIManager.swift */; };
+		A399056427C0D13D007F62CB /* DescriptionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056327C0D13D007F62CB /* DescriptionHeader.swift */; };
+		A399056627C0DFB4007F62CB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056527C0DFB4007F62CB /* Search.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		A36C212627B99C4A00974B28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A36C212827B99DFC00974B28 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		A36C212A27B99E2300974B28 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		A399056327C0D13D007F62CB /* DescriptionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionHeader.swift; sourceTree = "<group>"; };
+		A399056527C0DFB4007F62CB /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +223,9 @@
 		A36C20FC27B9972500974B28 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A399056327C0D13D007F62CB /* DescriptionHeader.swift */,
 				A36C211E27B99B6400974B28 /* MyCollectionViewCell.swift */,
+				A399056527C0DFB4007F62CB /* Search.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,10 +378,12 @@
 				A36C20E027B995F700974B28 /* ViewController.swift in Sources */,
 				A36C212127B99B7800974B28 /* SearchViewController.swift in Sources */,
 				A36C210B27B9992C00974B28 /* Icon.swift in Sources */,
+				A399056627C0DFB4007F62CB /* Search.swift in Sources */,
 				A36C210927B9988E00974B28 /* ForecastCollectionViewCell.swift in Sources */,
 				A36C210527B9982300974B28 /* CustomTabBarController.swift in Sources */,
 				A36C20DC27B995F700974B28 /* AppDelegate.swift in Sources */,
 				A36C211127B9998C00974B28 /* TodayLabel.swift in Sources */,
+				A399056427C0D13D007F62CB /* DescriptionHeader.swift in Sources */,
 				A36C210F27B9996100974B28 /* DateLabel.swift in Sources */,
 				A36C212927B99DFC00974B28 /* LocationModel.swift in Sources */,
 				A36C211F27B99B6400974B28 /* MyCollectionViewCell.swift in Sources */,
