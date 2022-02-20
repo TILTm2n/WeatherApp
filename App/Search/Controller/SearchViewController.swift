@@ -10,11 +10,9 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    var collection = SearchCollection().collectionView
     let searchPanel = Search().searchContainer
     let header = DescriptionHeader().headerStackView
-    
-    //var collectionView: UICollectionView?
+    var collection = SearchCollection().collectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()

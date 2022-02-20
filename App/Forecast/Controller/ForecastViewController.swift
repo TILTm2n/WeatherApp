@@ -26,10 +26,8 @@ class ForecastViewController: UIViewController {
         collectionView.delegate = self
         
         setHeaderConstraints()
-        setCollectionViewConstraints()
-        
         setTableViewConstraints()
-        
+        setCollectionViewConstraints()
     }
     
     //MARK: - Header Constraints
@@ -86,7 +84,6 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
-    
 }
 
 

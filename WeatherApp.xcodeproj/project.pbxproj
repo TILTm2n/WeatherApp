@@ -42,6 +42,7 @@
 		A399056627C0DFB4007F62CB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056527C0DFB4007F62CB /* Search.swift */; };
 		A399056827C11F44007F62CB /* SearchCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056727C11F44007F62CB /* SearchCollection.swift */; };
 		A399056A27C12DF8007F62CB /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399056927C12DF8007F62CB /* Header.swift */; };
+		A3E18E4827C2294500F3144C /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E18E4727C2294500F3144C /* ForecastModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		A399056527C0DFB4007F62CB /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A399056727C11F44007F62CB /* SearchCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollection.swift; sourceTree = "<group>"; };
 		A399056927C12DF8007F62CB /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		A3E18E4727C2294500F3144C /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +217,6 @@
 			children = (
 				A36C212827B99DFC00974B28 /* LocationModel.swift */,
 				A36C212A27B99E2300974B28 /* APIManager.swift */,
-				A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -258,9 +259,9 @@
 			isa = PBXGroup;
 			children = (
 				A399056927C12DF8007F62CB /* Header.swift */,
+				A303C14C27C17F9F009867F8 /* ForecastTable.swift */,
 				A303C14A27C17888009867F8 /* ForecastCollection.swift */,
 				A36C212227B99C0200974B28 /* ForecastTableViewCell.swift */,
-				A303C14C27C17F9F009867F8 /* ForecastTable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +269,7 @@
 		A36C210027B9975000974B28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A3E18E4727C2294500F3144C /* ForecastModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				A33A355527BAAF5D007B9E3A /* ErrorManager.swift */,
+				A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */,
 				A34ACDF627BD55C700B10BB5 /* WeatherIconManager.swift */,
 			);
 			path = Utility;
@@ -396,6 +399,7 @@
 				A399056627C0DFB4007F62CB /* Search.swift in Sources */,
 				A36C210927B9988E00974B28 /* ForecastCollectionViewCell.swift in Sources */,
 				A36C210527B9982300974B28 /* CustomTabBarController.swift in Sources */,
+				A3E18E4827C2294500F3144C /* ForecastModel.swift in Sources */,
 				A36C20DC27B995F700974B28 /* AppDelegate.swift in Sources */,
 				A36C211127B9998C00974B28 /* TodayLabel.swift in Sources */,
 				A399056427C0D13D007F62CB /* DescriptionHeader.swift in Sources */,
