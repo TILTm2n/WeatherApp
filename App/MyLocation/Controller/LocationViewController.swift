@@ -185,11 +185,9 @@ extension LocationViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCollectionViewCell.identifier, for: indexPath) as! LocationCollectionViewCell
-        
         cell.setTemperature(temp: hourlyForecastArray[indexPath.row].temperature)
         cell.setIcon(icon: hourlyForecastArray[indexPath.row].weather[0].icon)
         cell.setTime(time: hourlyForecastArray[indexPath.row].getStringDate())
-        
         return cell
     }
     

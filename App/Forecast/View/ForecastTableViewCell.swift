@@ -115,6 +115,15 @@ class ForecastTableViewCell: UITableViewCell {
         self.icon.image = UIImage(named: icon)
     }
     
+    func setDayOfWeek(_ dayOfWeek: Double) {
+        let date = Date(timeIntervalSince1970: dayOfWeek)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        let dayOfTheWeekString = dateFormatter.string(from: date)
+        self.dayOfWeek.text = dayOfTheWeekString
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state

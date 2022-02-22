@@ -7,7 +7,7 @@
 import UIKit
 import Foundation
 
-struct ForecastTable {
+class ForecastTable {
     var tableView: UITableView
     
     init() {
@@ -16,9 +16,5 @@ struct ForecastTable {
         tableView.backgroundColor = UIColor(named: "mainBGLight")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.identifier)
-    }
-    
-    func getTableView() -> UITableView {
-        return tableView
     }
 }

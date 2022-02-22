@@ -14,7 +14,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate{
 
     let header = Header()
     let collectionView = ForecastCollection().getCollectionView()
-    let tableView = ForecastTable().getTableView()
+    let tableView = ForecastTable().tableView
     let locationManager = CLLocationManager()
     
     lazy var refreshControl : UIRefreshControl = {
@@ -31,6 +31,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "mainBGLight")
+        tableView.backgroundColor = UIColor(named: "mainBGLight")
         view.addSubview(header.getHeader())
         view.addSubview(collectionView)
         view.addSubview(tableView)
@@ -53,7 +54,6 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate{
     
     func getCurrentWeatherData() {
         weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
-            //self.toggleActivityIndicator(on: false)
             switch result {
             case .Success(let currentWeather):
                 self.updateUIWith(currentWeather)
@@ -135,6 +135,7 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource{
         cell.backgroundColor = UIColor(named: "mainBGLight")
         cell.setIcon(dailyForecastArray[indexPath.row].weather[0].icon)
         cell.setTemperature(Int(dailyForecastArray[indexPath.row].temp.day))
+        cell.setDayOfWeek(dailyForecastArray[indexPath.row].dt)
         cell.setDate(dailyForecastArray[indexPath.row].getStringDate())
         return cell
     }
