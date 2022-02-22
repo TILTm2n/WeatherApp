@@ -7,6 +7,34 @@
 
 import Foundation
 
+struct Coordinates {
+    private var latitude: Double
+    private var longitude: Double
+    
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    var Latitude: Double {
+        get {
+            return latitude
+        }
+        set(newLatitude) {
+            latitude = newLatitude
+        }
+    }
+    
+    var Longitude: Double {
+        get {
+            return latitude
+        }
+        set(newLongitude) {
+            longitude = newLongitude
+        }
+    }
+}
+
 protocol FinalURLPoint {
     var baseURL: URL { get }
     var path: String { get }
@@ -27,8 +55,6 @@ protocol APIManager {
     
     //использует данные для обновленя интерфейса
     func fetch<LocationModel>(request: URLRequest, completionHandler: @escaping (APIResult<LocationModel>) -> Void)
-    
-    
 }
 
 extension APIManager {

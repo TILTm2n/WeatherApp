@@ -5,14 +5,27 @@
 //  Created by Eugene on 13.02.2022.
 //
 
+import CoreLocation
 import Foundation
 import UIKit
 
-class ForecastViewController: UIViewController {
+class ForecastViewController: UIViewController, CLLocationManagerDelegate {
 
     let header = Header().getHeader()
     let collectionView = ForecastCollection().getCollectionView()
     let tableView = ForecastTable().getTableView()
+    let locationManager = CLLocationManager()
+    
+    lazy var refreshControl : UIRefreshControl = {
+        var refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.red
+        return refreshControl
+    }()
+    
+    lazy var weatherManager = APIWeatherManager(apiKey: "5c3cbd6a194ea55903526944cac7ebe1")
+    var coordanates = Coordinates(latitude: 44.676281998542265, longitude: 34.40885457364702)
+    var hourlyForecastArray: [HourForecast] = []
+    //var dailyForecastArray: [DaysForecast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +38,42 @@ class ForecastViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
         setHeaderConstraints()
         setTableViewConstraints()
         setCollectionViewConstraints()
+        
+    }
+    
+    func getCurrentWeatherData() {
+        weatherManager.fetchCurrentWeatherWith(coordinates: coordanates) { (result) in
+            //self.toggleActivityIndicator(on: false)
+            switch result {
+            case .Success(let currentWeather):
+                self.updateUIWith(currentWeather)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.tableView.reloadData()
+                }
+            case.Failure(let error as NSError):
+                let alertController = UIAlertController(title: "Unable to get data", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(ok)
+                self.present(alertController, animated: true, completion: nil)
+            default: break
+            }
+        }
+    }
+    
+    func updateUIWith(_ currentWeather: LocationModel) {
+        for i in 0...6 {
+            hourlyForecastArray.append(currentWeather.hours[i])
+            //dailyForecastArray.append(currentWeather.days[i])
+        }
     }
     
     //MARK: - Header Constraints
@@ -74,6 +120,7 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.identifier) as! ForecastTableViewCell
         cell.backgroundColor = UIColor(named: "mainBGLight")
+        
         return cell
     }
     

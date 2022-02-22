@@ -216,7 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				A36C212827B99DFC00974B28 /* LocationModel.swift */,
-				A36C212A27B99E2300974B28 /* APIManager.swift */,
+				A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,8 +285,8 @@
 		A36C210227B9977600974B28 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				A36C212A27B99E2300974B28 /* APIManager.swift */,
 				A33A355527BAAF5D007B9E3A /* ErrorManager.swift */,
-				A33A355727BAB9FF007B9E3A /* APIWeatherManager.swift */,
 				A34ACDF627BD55C700B10BB5 /* WeatherIconManager.swift */,
 			);
 			path = Utility;

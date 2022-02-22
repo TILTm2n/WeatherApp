@@ -14,6 +14,7 @@ struct LocationModel: Codable {
     var location: String
     var current: Current
     var hours: [HourForecast]
+    var days: [DaysForecast]
     
     enum CodingKeys: String, CodingKey {
         case latitude = "lat"
@@ -21,6 +22,7 @@ struct LocationModel: Codable {
         case location = "timezone"
         case current
         case hours = "hourly"
+        case days = "daily"
     }
 }
 
@@ -78,6 +80,13 @@ struct HourForecast: Codable {
         return strDate
     }
 }
+
+struct DaysForecast: Codable {
+    var date: Double
+    var temperature: Double
+    var weather: [Weather]
+}
+
 
 
 

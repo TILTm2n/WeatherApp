@@ -54,7 +54,6 @@ class ForecastTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         contentView.addSubview(dayOfWeek)
         contentView.addSubview(date)
         contentView.addSubview(temperature)
@@ -67,39 +66,38 @@ class ForecastTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0))
         contentView.layer.cornerRadius = 20
         contentView.backgroundColor = UIColor(named: "tabBarColorLight")
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0))
         
-        setDayOfWeekConstraints()
-        setDateConstraints()
-        setTemperatureConstraints()
-        setIconConstraints()
+        setConstraints()
     }
     
-    func setDayOfWeekConstraints(){
-        dayOfWeek.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24.0).isActive = true
-        dayOfWeek.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 27.0).isActive = true
-        dayOfWeek.heightAnchor.constraint(equalToConstant: 18.0).isActive = true
-    }
-    
-    func setDateConstraints(){
-        date.topAnchor.constraint(equalTo: dayOfWeek.bottomAnchor).isActive = true
-        date.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 27.0).isActive = true
-        date.heightAnchor.constraint(equalToConstant: 17.0).isActive = true
-    }
-    
-    func setTemperatureConstraints(){
-        temperature.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        temperature.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        temperature.heightAnchor.constraint(equalToConstant: 47.0).isActive = true
-    }
-    
-    func setIconConstraints(){
-        icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        icon.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        icon.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        icon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -27.0).isActive = true
+    func setConstraints(){
+        NSLayoutConstraint.activate([
+            dayOfWeek.heightAnchor.constraint(equalToConstant: 18.0),
+            dayOfWeek.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24.0),
+            dayOfWeek.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 27.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            date.heightAnchor.constraint(equalToConstant: 17.0),
+            date.topAnchor.constraint(equalTo: dayOfWeek.bottomAnchor),
+            date.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 27.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            temperature.heightAnchor.constraint(equalToConstant: 47.0),
+            temperature.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            temperature.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            icon.widthAnchor.constraint(equalToConstant: 80),
+            icon.heightAnchor.constraint(equalToConstant: 80),
+            icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            icon.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -27.0)
+        ])
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
