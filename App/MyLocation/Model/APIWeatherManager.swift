@@ -45,7 +45,7 @@ enum ForecastType: FinalURLPoint {
     var path: String {
         switch self {
         case let .Current(apiKey, coordinates):
-            return "onecall?lat=\(coordinates.Latitude)&lon=\(coordinates.Longitude)&exclude=minutely,daily,alerts&appid=\(apiKey)"
+            return "onecall?lat=\(coordinates.Latitude)&lon=\(coordinates.Longitude)&exclude=minutely,alerts&appid=\(apiKey)"
         }
     }
     

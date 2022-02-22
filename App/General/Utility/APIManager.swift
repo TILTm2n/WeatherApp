@@ -78,7 +78,7 @@ extension APIManager {
             //проверяем пустые ли данные
             if data == nil{
                 if let error = error{
-                    
+                    print("pososi1")
                     //если да и есть ошибка, то возвращаем в completionHandler данные
                     completionHandler(nil, HTTPResponse, error)
                 }
