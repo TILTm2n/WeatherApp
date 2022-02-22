@@ -19,9 +19,9 @@ class ForecastTableViewCell: UITableViewCell {
     
     let temperature: UILabel = {
         var temperature = UILabel()
-        temperature.text = "28C"
+        temperature.text = "28c"
         temperature.translatesAutoresizingMaskIntoConstraints = false
-        temperature.font = UIFont(name: "RobotoSlab-Medium", size: 36)
+        temperature.font = .systemFont(ofSize: 36, weight: .medium)
         temperature.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         return temperature
     }()
@@ -44,14 +44,14 @@ class ForecastTableViewCell: UITableViewCell {
     let dayOfWeek: UILabel = {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "EEEE"
+        dateFormatter.locale = Locale(identifier: "en_US")
         let dayOfTheWeekString = dateFormatter.string(from: date)
         
         var myLabel = UILabel()
-        myLabel.font = .systemFont(ofSize: 14, weight: .bold)
         myLabel.textColor = .white
         myLabel.text = "\(dayOfTheWeekString)"
+        myLabel.font = .systemFont(ofSize: 14, weight: .bold)
         return myLabel
     }()
     
@@ -65,11 +65,9 @@ class ForecastTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         contentView.addSubview(dataStack)
         contentView.addSubview(temperature)
         contentView.addSubview(icon)
-    
         dataStack.addArrangedSubview(dayOfWeek)
         dataStack.addArrangedSubview(date)
     }
@@ -83,21 +81,18 @@ class ForecastTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0))
         contentView.layer.cornerRadius = 20
         contentView.backgroundColor = UIColor(named: "tabBarColorLight")
-        
         setConstraints()
     }
     
     func setConstraints(){
-        
         NSLayoutConstraint.activate([
             dataStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             dataStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 28)
         ])
 
         NSLayoutConstraint.activate([
-            temperature.heightAnchor.constraint(equalToConstant: 47.0),
-            temperature.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            temperature.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            temperature.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            temperature.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
 
         NSLayoutConstraint.activate([
@@ -108,9 +103,20 @@ class ForecastTableViewCell: UITableViewCell {
         ])
     }
     
+    func setDate(_ date: String){
+        self.date.text = date
+    }
+    
+    func setTemperature(_ temp: Int) {
+        self.temperature.text = "\(temp - 273)c"
+    }
+    
+    func setIcon(_ icon: String) {
+        self.icon.image = UIImage(named: icon)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-
 }

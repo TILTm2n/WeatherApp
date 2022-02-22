@@ -72,7 +72,12 @@ struct Header {
         return dateLabel
     }
     
-    func setDate() {
-        dateLabel.text = ""
+    func setForecastDate(_ date: Double) {
+        let date = Date(timeIntervalSince1970: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: "en_US")
+        let strDate = dateFormatter.string(from: date)
+        self.dateLabel.text = strDate
     }
 }

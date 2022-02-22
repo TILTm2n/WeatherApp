@@ -85,6 +85,16 @@ struct DaysForecast: Codable {
     var dt: Double
     var temp: DaysTemperature
     var weather: [Weather]
+    
+    func getStringDate() -> String{
+        let date = Date(timeIntervalSince1970: dt)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "MMMM d"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        let strDate = dateFormatter.string(from: date)
+        return strDate
+    }
 }
 
 struct DaysTemperature: Codable {

@@ -16,7 +16,6 @@
 		A36C20DE27B995F700974B28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DD27B995F700974B28 /* SceneDelegate.swift */; };
 		A36C20E027B995F700974B28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C20DF27B995F700974B28 /* ViewController.swift */; };
 		A36C20E327B995F700974B28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36C20E127B995F700974B28 /* Main.storyboard */; };
-		A36C20E627B995F700974B28 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A36C20E427B995F700974B28 /* WeatherApp.xcdatamodeld */; };
 		A36C20E827B995F800974B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36C20E727B995F800974B28 /* Assets.xcassets */; };
 		A36C20EB27B995F800974B28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36C20E927B995F800974B28 /* LaunchScreen.storyboard */; };
 		A36C210527B9982300974B28 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C210427B9982300974B28 /* CustomTabBarController.swift */; };
@@ -56,7 +55,6 @@
 		A36C20DD27B995F700974B28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A36C20DF27B995F700974B28 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A36C20E227B995F700974B28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A36C20E527B995F700974B28 /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		A36C20E727B995F800974B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A36C20EA27B995F800974B28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A36C20EC27B995F800974B28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				A36C20E727B995F800974B28 /* Assets.xcassets */,
 				A36C20E927B995F800974B28 /* LaunchScreen.storyboard */,
 				A36C20EC27B995F800974B28 /* Info.plist */,
-				A36C20E427B995F700974B28 /* WeatherApp.xcdatamodeld */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -381,7 +378,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A36C211327B999B300974B28 /* LocationLabel.swift in Sources */,
-				A36C20E627B995F700974B28 /* WeatherApp.xcdatamodeld in Sources */,
 				A36C212727B99C4A00974B28 /* SettingsViewController.swift in Sources */,
 				A34ACDF727BD55C700B10BB5 /* WeatherIconManager.swift in Sources */,
 				A36C211B27B99A4700974B28 /* LocationCollectionViewCell.swift in Sources */,
@@ -632,19 +628,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A36C20E427B995F700974B28 /* WeatherApp.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A36C20E527B995F700974B28 /* WeatherApp.xcdatamodel */,
-			);
-			currentVersion = A36C20E527B995F700974B28 /* WeatherApp.xcdatamodel */;
-			path = WeatherApp.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A36C20D027B995F700974B28 /* Project object */;
 }

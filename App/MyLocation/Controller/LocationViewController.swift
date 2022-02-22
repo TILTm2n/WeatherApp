@@ -61,7 +61,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         let userLocation = locations.last! as CLLocation
         coordanates.Latitude = userLocation.coordinate.latitude
         coordanates.Longitude = userLocation.coordinate.longitude
-        
     }
     
     func toggleActivityIndicator(on: Bool) {

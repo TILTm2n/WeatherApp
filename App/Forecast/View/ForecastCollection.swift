@@ -19,7 +19,7 @@ struct ForecastCollection {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor(named: "mainBGLight")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastCollectionViewCell.identifier)
+        collectionView.register(LocationCollectionViewCell.self, forCellWithReuseIdentifier: LocationCollectionViewCell.identifier)
     }
     
     func getCollectionView() -> UICollectionView {
